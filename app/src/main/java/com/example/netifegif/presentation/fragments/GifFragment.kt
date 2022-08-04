@@ -1,8 +1,9 @@
 package com.example.netifegif.presentation.fragments
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,17 +29,13 @@ class GifFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val gif = args.giphy
-        when (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
-            Configuration.UI_MODE_NIGHT_NO -> binding.btnBack.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-            Configuration.UI_MODE_NIGHT_YES -> binding.btnBack.setImageResource(R.drawable.ic_baseline_arrow_back_24_white)
-        }
+        binding.backButton.setImageResource(R.drawable.ic_baseline_arrow_back_24_white)
         Glide.with(this)
             .asGif()
             .load(gif.url_large)
-            .placeholder(R.drawable.black_cursor)
             .into(binding.imageViewGif)
 
-        binding.btnBack.setOnClickListener {
+        binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_gifFragment_to_gridOfGifsFragment)
         }
     }

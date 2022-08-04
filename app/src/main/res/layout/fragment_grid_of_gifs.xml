@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
 
     <EditText
         android:id="@+id/search"
@@ -16,14 +17,13 @@
         android:hint="@string/search"
         android:inputType="textPersonName"
         android:padding="@dimen/dimen_8dp"
-        android:textCursorDrawable="@drawable/black_cursor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:autofillHints="@null" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGifs"
+        android:id="@+id/recycle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/dimen_8dp"

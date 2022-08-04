@@ -55,7 +55,6 @@ class GridOfGifsFragment : Fragment() {
             adapter.differ.submitList(list)
         }
 
-
         adapter.setOnItemClickListener {
             val bundle = Bundle()
             bundle.putSerializable("giphy", it)
@@ -69,7 +68,7 @@ class GridOfGifsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        recyclerView = binding.rvGifs
+        recyclerView = binding.recycle
         adapter = GifsAdapter()
         recyclerView.adapter = adapter
     }

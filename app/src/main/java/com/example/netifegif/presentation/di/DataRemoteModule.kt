@@ -1,8 +1,8 @@
 package com.example.netifegif.presentation.di
 
 import com.example.netifegif.BuildConfig
-import com.example.netifegif.data.api.GifsApi
 import com.example.netifegif.data.GifsMapper
+import com.example.netifegif.data.api.GifsApi
 import com.example.netifegif.data.repository.GifsSource
 import com.example.netifegif.domain.repository.GifsRepository
 import org.koin.dsl.module

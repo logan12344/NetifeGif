@@ -53,7 +53,6 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
     fun setOnItemClickListener(listener: (Giphy) -> Unit) {
         onItemClickListener = listener
     }
-
 }
 
 private var onItemClickListener: ((Giphy) -> Unit)? = null

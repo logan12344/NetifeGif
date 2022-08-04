@@ -2,8 +2,6 @@ package com.example.netifegif.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
-import com.example.netifegif.R
 import com.example.netifegif.databinding.ActivityMainBinding
 
 

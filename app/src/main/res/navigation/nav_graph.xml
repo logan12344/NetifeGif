@@ -9,23 +9,26 @@
         android:id="@+id/gifFragment"
         android:name="com.example.netifegif.presentation.fragments.GifFragment"
         android:label="fragment_gif"
-        tools:layout="@layout/fragment_gif" >
+        tools:layout="@layout/fragment_gif">
+
         <action
             android:id="@+id/action_gifFragment_to_gridOfGifsFragment"
             app:destination="@id/gridOfGifsFragment"
-
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+
         <argument
             android:name="giphy"
             app:argType="com.example.netifegif.domain.models.Giphy" />
     </fragment>
+
     <fragment
         android:id="@+id/gridOfGifsFragment"
         android:name="com.example.netifegif.presentation.fragments.GridOfGifsFragment"
-        android:label="GridOfGifsFragment" >
+        android:label="GridOfGifsFragment">
+
         <action
             android:id="@+id/action_gridOfGifsFragment_to_gifFragment"
             app:destination="@id/gifFragment"
@@ -33,5 +36,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
 </navigation>
