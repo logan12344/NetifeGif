@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NetifeGif</string>
+    <string name="gif">Gif</string>
+    <string name="search">Search</string>
 </resources>
