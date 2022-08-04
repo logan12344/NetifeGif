@@ -57,19 +57,21 @@ class GridOfGifsFragment : Fragment() {
             }
         }
 
+        viewModel.getTrendingGifs()
+        viewModel.trendingGifs.observe(viewLifecycleOwner) { list ->
+            adapter.list.addAll(list)
+            adapter.notifyDataSetChanged()
+        }
+
         viewModel.searchGifs.observe(viewLifecycleOwner) { list ->
-            adapter.differ.submitList(list)
+            adapter.list.addAll(list)
+            adapter.notifyDataSetChanged()
         }
 
         adapter.setOnItemClickListener {
             val bundle = Bundle()
             bundle.putSerializable("giphy", it)
             findNavController().navigate(R.id.action_gridOfGifsFragment_to_gifFragment, bundle)
-        }
-
-        viewModel.getTrendingGifs()
-        viewModel.trendingGifs.observe(viewLifecycleOwner) { list ->
-            adapter.differ.submitList(list)
         }
 
         binding.changeView.setOnClickListener {

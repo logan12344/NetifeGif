@@ -22,17 +22,7 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Giphy>() {
-        override fun areItemsTheSame(oldItem: Giphy, newItem: Giphy): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Giphy, newItem: Giphy): Boolean {
-            return oldItem.url_large == newItem.url_large
-        }
-    }
-
-    val differ = AsyncListDiffer(this, differCallback)
+    val list = mutableListOf<Giphy>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GifsViewHolder {
         val binding =
@@ -41,14 +31,14 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: GifsViewHolder, position: Int) {
-        val item = differ.currentList[position]
+        val item = list[position]
         holder.displayGif(item)
         holder.itemView.setOnClickListener {
             onItemClickListener?.let { it(item) }
         }
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
+    override fun getItemCount(): Int = list.size
 
     fun setOnItemClickListener(listener: (Giphy) -> Unit) {
         onItemClickListener = listener
