@@ -40,11 +40,10 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
     val list = AsyncListDiffer(this, listCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GifsViewHolder {
-        val itemView: View
-        if (viewType == LIST_ITEM) {
-            itemView = LayoutInflater.from(parent.context).inflate(R.layout.gif_item_list, parent, false)
+        val itemView: View = if (viewType == LIST_ITEM) {
+            LayoutInflater.from(parent.context).inflate(R.layout.gif_item_list, parent, false)
         } else {
-            itemView = LayoutInflater.from(parent.context).inflate(R.layout.gif_item_grid, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.gif_item_grid, parent, false)
         }
 
         return GifsViewHolder(itemView)
@@ -66,9 +65,8 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
         }
     }
 
-    fun toggleItemViewType(): Boolean {
-        isSwitchView = !isSwitchView
-        return isSwitchView
+    fun setItemViewType(toggle: Boolean) {
+        isSwitchView = toggle
     }
 
     override fun getItemCount(): Int = list.currentList.size

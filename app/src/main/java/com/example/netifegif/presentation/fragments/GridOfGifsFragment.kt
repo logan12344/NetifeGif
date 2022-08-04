@@ -1,6 +1,7 @@
 package com.example.netifegif.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netifegif.R
 import com.example.netifegif.databinding.FragmentGridOfGifsBinding
+import com.example.netifegif.preference.Prefs
 import com.example.netifegif.presentation.GifsViewModel
 import com.example.netifegif.presentation.adapters.GifsAdapter
 import kotlinx.coroutines.Job
@@ -26,12 +28,13 @@ class GridOfGifsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GifsAdapter
     private val viewModel: GifsViewModel by sharedViewModel()
+    private lateinit var shared : Prefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
+        shared = Prefs(requireContext())
         binding = FragmentGridOfGifsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -69,24 +72,26 @@ class GridOfGifsFragment : Fragment() {
         }
 
         binding.changeView.setOnClickListener {
+            shared.viewTypeList = !shared.viewTypeList
             setLayoutManager()
         }
     }
 
     private fun setLayoutManager() {
-        val isSwitched: Boolean = adapter.toggleItemViewType()
-        recyclerView.layoutManager = if (isSwitched) LinearLayoutManager(context) else GridLayoutManager(context, 2)
-        binding.changeView.setImageResource(
-            if (isSwitched) R.drawable.ic_dashboard_24
-            else R.drawable.ic_view_stream_24
-        )
-        adapter.notifyDataSetChanged()
+        adapter.setItemViewType(shared.viewTypeList)
+        if (shared.viewTypeList) {
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            binding.changeView.setImageResource(R.drawable.ic_dashboard_24)
+        } else {
+            recyclerView.layoutManager = GridLayoutManager(context, 2)
+            binding.changeView.setImageResource(R.drawable.ic_view_stream_24)
+        }
     }
 
     private fun setupRecyclerView() {
         recyclerView = binding.recycle
         adapter = GifsAdapter()
-        setLayoutManager()
         recyclerView.adapter = adapter
+        setLayoutManager()
     }
 }
