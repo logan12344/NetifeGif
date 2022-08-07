@@ -1,7 +1,6 @@
 package com.example.netifegif.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netifegif.R
 import com.example.netifegif.databinding.FragmentGridOfGifsBinding
+import com.example.netifegif.domain.models.Giphy
 import com.example.netifegif.preference.Prefs
 import com.example.netifegif.presentation.GifsViewModel
 import com.example.netifegif.presentation.adapters.GifsAdapter
@@ -67,7 +67,10 @@ class GridOfGifsFragment : Fragment() {
 
         adapter.setOnItemClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("giphy", it)
+            val index: Int = adapter.list.currentList.indexOf(it) - 1
+            val test: Array<Giphy> = adapter.list.currentList.toTypedArray()
+            bundle.putSerializable("arrayGifs", test)
+            bundle.putInt("index", index)
             findNavController().navigate(R.id.action_gridOfGifsFragment_to_gifFragment, bundle)
         }
 

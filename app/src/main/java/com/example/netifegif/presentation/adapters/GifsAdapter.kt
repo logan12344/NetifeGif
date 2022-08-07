@@ -18,7 +18,6 @@ class GifsAdapter : RecyclerView.Adapter<GifsAdapter.GifsViewHolder>() {
     var isSwitchView = true
 
     class GifsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         fun displayGif(item: Giphy) {
             Glide.with(itemView.context)
                 .asGif()

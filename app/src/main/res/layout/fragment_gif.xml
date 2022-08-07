@@ -8,17 +8,14 @@
     android:background="@color/black"
     tools:context=".presentation.fragments.GifFragment">
 
-    <ImageView
-        android:id="@+id/imageViewGif"
-        android:layout_width="@dimen/zero"
-        android:layout_height="@dimen/zero"
-        android:layout_gravity="center"
-        android:contentDescription="@string/gif"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/backButton"
