@@ -67,7 +67,7 @@ class GridOfGifsFragment : Fragment() {
 
         adapter.setOnItemClickListener {
             val bundle = Bundle()
-            val index: Int = adapter.list.currentList.indexOf(it) - 1
+            val index: Int = adapter.list.currentList.indexOf(it)
             val test: Array<Giphy> = adapter.list.currentList.toTypedArray()
             bundle.putSerializable("arrayGifs", test)
             bundle.putInt("index", index)

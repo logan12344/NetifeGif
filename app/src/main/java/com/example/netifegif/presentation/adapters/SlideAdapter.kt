@@ -1,6 +1,5 @@
 package com.example.netifegif.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,7 @@ import com.example.netifegif.domain.models.Giphy
 
 
 class SlideAdapter (
-    private val gifsArray: Array<Giphy>,
-    private val index: Int,
+    private val gifsArray: Array<Giphy>
 ) : RecyclerView.Adapter<SlideAdapter.SlideViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlideViewHolder {
@@ -21,9 +19,7 @@ class SlideAdapter (
     }
 
     override fun onBindViewHolder(holder: SlideViewHolder, position: Int) {
-        Log.d("123321", "1 " + index.toString())
-        Log.d("123321", "2 " + position.toString())
-        holder.displayGif(gifsArray[index + position])
+        holder.displayGif(gifsArray[position])
     }
 
     override fun getItemCount(): Int {

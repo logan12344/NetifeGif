@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.netifegif.R
@@ -29,8 +30,10 @@ class GifFragment : Fragment() {
         val gifsArray = requireArguments().getSerializable("arrayGifs") as Array<Giphy>
         val index = requireArguments().getSerializable("index") as Int
         binding.backButton.setImageResource(R.drawable.ic_baseline_arrow_back_24_white)
-        binding.pager.adapter = SlideAdapter(gifsArray, index + 1)
-
+        binding.pager.doOnPreDraw {
+            binding.pager.currentItem = index
+        }
+        binding.pager.adapter = SlideAdapter(gifsArray)
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_gifFragment_to_gridOfGifsFragment)
         }
